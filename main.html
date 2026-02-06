@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>HAPPY 2nd ANNIVERSARY!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --accent: #ff69b4;
+            --accent-2: #ffb3d6;
+            --bg1: #fff7fb;
+            --bg2: #fff1f7;
+            --text: #2b2b2b;
+        }
+
+        *{box-sizing:border-box}
+
+        body {
+            font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: radial-gradient(1200px 600px at 10% 10%, rgba(255,218,230,0.6), transparent), linear-gradient(135deg,var(--bg1),var(--bg2));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            color: var(--text);
+        }
+
+        .message {
+            font-size: clamp(1.2rem, 3.5vw, 2.4rem);
+            font-weight: 400;
+            color: var(--text);
+            opacity: 0;
+            position: absolute;
+            transform: translateY(8px) scale(0.99);
+            transition: opacity 600ms ease, transform 600ms ease;
+            text-align:center;
+            padding: 0 1rem;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            max-width: 90vw;
+        }
+
+        .message.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        #startOverlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(255,255,255,0.95);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.25rem;
+            z-index: 999;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+        }
+
+        #startOverlay:hover{opacity:0.98}
+
+        #nextButton {
+            position: fixed;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 26px;
+            font-size: 1rem;
+            border: none;
+            background: linear-gradient(90deg,var(--accent),var(--accent-2));
+            color: white;
+            border-radius: 999px;
+            cursor: pointer;
+            display: none;
+            z-index: 20;
+            box-shadow: 0 8px 20px rgba(255,105,180,0.18);
+            transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms;
+        }
+
+        #nextButton:hover {
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 14px 30px rgba(255,105,180,0.22);
+        }
+
+        /* Anniversary GIF removed */
+
+        audio {display:none}
+
+        @media (max-width:600px){
+            #nextButton{padding:50px 18px}
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Music -->
+    <audio id="bgMusic" loop>
+        <source src="coldplay.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Start Overlay -->
+    <div id="startOverlay">TAP TO START</div>
+
+    <!-- Messages -->
+    <div id="message1" class="message visible">HEY LOVE</div>
+    <div id="message2" class="message">BEFORE I SHOW YOU WHAT I WAS WORKING ON</div>
+    <div id="message3" class="message">I JUST WANTED TO SAY..</div>
+    <div id="message4" class="message">HAPPY 2ND ANIVERSARY, MY LOVE! 💖</div>
+
+    <!-- Continue Button -->
+    <button id="nextButton" onclick="location.href='love/dash.html'">Continue →</button>
+
+    <script>
+        const music = document.getElementById("bgMusic");
+        const overlay = document.getElementById("startOverlay");
+        const nextButton = document.getElementById("nextButton");
+        const messages = [
+            document.getElementById("message1"),
+            document.getElementById("message2"),
+            document.getElementById("message3"),
+            document.getElementById("message4")
+        ];
+
+        let current = 0;
+
+        function showNextMessage() {
+            if (current < messages.length - 1) {
+                messages[current].classList.remove("visible");
+            }
+
+            setTimeout(() => {
+                current++;
+                if (current < messages.length) {
+                    messages[current].classList.add("visible");
+
+                    if (current === messages.length - 1) {
+                        setTimeout(() => {
+                            nextButton.style.display = 'block';
+                        }, 1500);
+                    } else {
+                        setTimeout(showNextMessage, 1800);
+                    }
+                }
+            }, 500);
+        }
+
+        overlay.addEventListener("click", () => {
+            music.play().catch(e => console.log("Autoplay error:", e));
+            overlay.style.display = "none";
+            setTimeout(showNextMessage, 1800);
+        });
+    </script>
+</body>
+</html>

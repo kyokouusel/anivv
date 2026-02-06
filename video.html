@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A Video for You</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #fff4f9;
+            font-family: 'Open Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3em;
+            color: #d63384;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        video {
+            width: 100%;
+            max-width: 720px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        a.button {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #d63384;
+            color: white;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        a.button:hover {
+            background-color: #e85ea0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Play Me</h1>
+    <p>I made this video for you — every second of it is a piece of how I feel. Hope it makes you smile. 💖</p>
+    <video controls>
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <br>
+    <a href="index.html" class="button">Back to Start</a>
+</body>
+</html>
